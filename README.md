@@ -86,9 +86,13 @@ src/
 
 ## Deployment (VPS)
 
+**→ Full step-by-step guide: [DEPLOY.md](./DEPLOY.md)**
+
+Summary:
+
 1. Install Bun on your VPS.
 2. Clone the repo and set up `.env`.
-3. Run with a process manager (e.g. systemd) so it restarts on reboot.
+3. Run with systemd so it restarts on reboot and survives disconnects.
 
 Example systemd unit (save as `/etc/systemd/system/weather-bot.service`):
 
