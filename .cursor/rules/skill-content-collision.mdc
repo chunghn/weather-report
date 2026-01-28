@@ -1,0 +1,172 @@
+---
+description: Guidelines for handling skill content collisions when skills have similar or overlapping content
+alwaysApply: true
+---
+
+# Skill Content Collision Handling
+
+When multiple skills cover similar topics, follow these guidelines to determine if they complement or conflict, and how to resolve any issues.
+
+## Detection
+
+### Signs of Content Collision
+
+1. **Overlapping Topics**: Multiple skills cover the same concept (e.g., memoization, compound components)
+2. **Different Levels of Detail**: One skill is general, another is specific
+3. **Different Scopes**: One is framework-specific, another is general
+4. **Contradictory Guidance**: Skills provide conflicting recommendations
+
+### Analysis Framework
+
+When you encounter overlapping skills, analyze:
+
+| Aspect          | Question                      | Example                                      |
+| --------------- | ----------------------------- | -------------------------------------------- |
+| **Focus**       | What is the primary purpose?  | Performance optimization vs general patterns |
+| **Specificity** | How detailed is the guidance? | 57 detailed rules vs general examples        |
+| **Scope**       | What's the domain/context?    | Next.js-specific vs React general            |
+| **Priority**    | What's the priority level?    | CRITICAL → LOW vs general best practices     |
+
+## Resolution Strategies
+
+### 1. Complementary Skills (No Conflict)
+
+When skills complement each other at different levels:
+
+**✅ Keep both skills** and document when to use each:
+
+```markdown
+**Recommendation:**
+
+- Use `vercel-react-best-practices` for React/Next.js performance optimization tasks
+- Use `frontend-patterns` for general React pattern reference
+- Use `coding-standards` for general code quality
+```
+
+**Characteristics:**
+
+- Different levels of detail (specific vs general)
+- Different scopes (framework-specific vs universal)
+- Different priorities (optimization-focused vs pattern-focused)
+- No contradictory advice
+
+### 2. Conflicting Guidance
+
+When skills provide contradictory recommendations:
+
+### Step 1: Identify the Conflict
+
+```markdown
+**Conflict:**
+
+- Skill A recommends: "Always use render props for composition"
+- Skill B recommends: "Prefer children over render props"
+```
+
+### Step 2: Determine Authority
+
+- Check which skill has higher specificity/authority
+- Check which skill is more recent or actively maintained
+- Check which skill aligns with project standards
+
+### Step 3: Resolve
+
+- **Option A**: Update the less specific skill to reference the authoritative one
+- **Option B**: Merge guidance, keeping the more nuanced recommendation
+- **Option C**: Deprecate one skill if it's clearly superseded
+
+### Example Resolution
+
+```markdown
+**Resolution:**
+
+- `vercel-composition-patterns` provides explicit guidance: prefer children over render props
+- `frontend-patterns` shows both as valid patterns
+- **Action**: Use `vercel-composition-patterns` guidance when refactoring; `frontend-patterns` for general reference
+```
+
+### 3. Redundant Content
+
+When skills duplicate content without adding value:
+
+**Action**: Consolidate or deprecate the redundant skill
+
+```markdown
+**Redundancy Detected:**
+
+- Skill A and Skill B both cover the same topic with identical guidance
+- Skill A is more comprehensive
+
+**Resolution:**
+
+- Keep Skill A (more comprehensive)
+- Update Skill B to reference Skill A, or deprecate Skill B
+```
+
+## Best Practices
+
+### When Creating New Skills
+
+1. **Check for Existing Skills**: Search `.cursor/skills/` for similar content
+2. **Identify Your Niche**: What unique value does this skill provide?
+3. **Document Relationships**: In skill description, mention related skills
+4. **Specify Scope**: Make it clear when to use this skill vs others
+
+### When Analyzing Collisions
+
+1. **Read Both Skills**: Understand the full context of each
+2. **Compare Examples**: Look at concrete examples to see differences
+3. **Check Priority Levels**: Understand if one is more authoritative
+4. **Document Findings**: Create or update `CONTENT_COLLISION_ANALYSIS.md`
+
+### When Using Skills
+
+1. **Use Most Specific First**: Prefer detailed, specific skills for targeted tasks
+2. **Fall Back to General**: Use general skills for broader pattern reference
+3. **Combine When Appropriate**: Use multiple complementary skills together
+4. **Resolve Conflicts Explicitly**: If guidance conflicts, choose based on project needs
+
+## Example: Memoization Overlap
+
+**Skills Involved:**
+
+- `vercel-react-best-practices`: Detailed memoization rules with anti-patterns
+- `frontend-patterns`: General memoization examples
+- `coding-standards`: General best practices
+
+**Analysis:**
+
+- ✅ No conflict - different levels of detail
+- ✅ Complementary - each serves different needs
+
+**Usage:**
+
+```markdown
+**For performance optimization:**
+→ Use `vercel-react-best-practices` (detailed, prioritized rules)
+
+**For general pattern reference:**
+→ Use `frontend-patterns` (basic examples)
+
+**For code quality:**
+→ Use `coding-standards` (general best practices)
+```
+
+## Documentation
+
+When you identify a collision:
+
+1. **Update Analysis File**: Document in `.cursor/skills/CONTENT_COLLISION_ANALYSIS.md`
+2. **Update Skill Descriptions**: Add "Related Skills" section if helpful
+3. **Create Decision Guide**: If needed, create a quick reference for which skill to use
+
+## Checklist
+
+When handling skill collisions:
+
+- [ ] Identified overlapping topics
+- [ ] Analyzed focus, specificity, scope, and priority
+- [ ] Determined if complementary or conflicting
+- [ ] Documented resolution strategy
+- [ ] Updated skill descriptions if needed
+- [ ] Updated `CONTENT_COLLISION_ANALYSIS.md` if it exists
