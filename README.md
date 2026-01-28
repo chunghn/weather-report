@@ -71,6 +71,8 @@ SEND_ON_STARTUP=true bun start
 | `bun run dev`       | Start with watch mode                  |
 | `bun run typecheck` | Run TypeScript check                   |
 | `bun test`          | Run tests                              |
+| `bun test:watch`    | Run tests in watch mode                |
+| `bun test:coverage` | Run tests with coverage report         |
 
 ## Project Structure
 
@@ -83,6 +85,14 @@ src/
 ├── telegram.ts   # Telegram sender
 └── types.ts      # TypeScript types
 ```
+
+## Architecture Documentation
+
+For detailed architecture documentation, see [codemaps/](./codemaps/INDEX.md):
+
+- [Architecture Overview](./codemaps/architecture.md) - System design and data flow
+- [Backend Structure](./codemaps/backend.md) - API clients and configuration
+- [Data Models](./codemaps/data.md) - TypeScript interfaces
 
 ## Deployment (VPS)
 
