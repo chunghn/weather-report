@@ -1,0 +1,7 @@
+[test]
+# Exclude test files from coverage report
+coverageSkipTestFiles = true
+# 80% minimum (workspace requirement)
+coverageThreshold = { lines = 0.8, functions = 0.8 }
+# Exclude entry point (orchestration only, no pure logic to unit test)
+coveragePathIgnorePatterns = ["**/index.ts"]
