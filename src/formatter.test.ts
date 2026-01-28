@@ -98,6 +98,57 @@ describe("formatWeatherMessage", () => {
     const msg = formatWeatherMessage(hot, "Test")
     expect(msg).toContain("熱")
   })
+
+  it("uses snow emoji for weather code 68-77", () => {
+    const snow: WeatherData = {
+      ...sampleWeather,
+      weatherCode: 71,
+      condition: "小雪",
+    }
+    const msg = formatWeatherMessage(snow, "Test")
+    expect(msg).toContain("❄️")
+  })
+
+  it("uses shower emoji for weather code 78-82", () => {
+    const shower: WeatherData = {
+      ...sampleWeather,
+      weatherCode: 80,
+      condition: "陣雨",
+    }
+    const msg = formatWeatherMessage(shower, "Test")
+    expect(msg).toContain("🌦️")
+  })
+
+  it("uses thunderstorm emoji for weather code 83+", () => {
+    const thunder: WeatherData = {
+      ...sampleWeather,
+      weatherCode: 95,
+      condition: "雷暴",
+    }
+    const msg = formatWeatherMessage(thunder, "Test")
+    expect(msg).toContain("⛈️")
+  })
+
+  it("shows 極高 UV level when uvIndex > 10", () => {
+    const extremeUV: WeatherData = {
+      ...sampleWeather,
+      uvIndex: 11,
+    }
+    const msg = formatWeatherMessage(extremeUV, "Test")
+    expect(msg).toContain("極高")
+    expect(msg).toContain("11")
+  })
+
+  it("includes shower advice when weather code 80-82", () => {
+    const shower: WeatherData = {
+      ...sampleWeather,
+      weatherCode: 80,
+      condition: "陣雨",
+    }
+    const msg = formatWeatherMessage(shower, "Test")
+    expect(msg).toContain("陣雨")
+    expect(msg).toContain("雨傘")
+  })
 })
 
 describe("formatErrorMessage", () => {

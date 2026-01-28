@@ -65,6 +65,26 @@ describe("sendMessage", () => {
     expect(result.success).toBe(false)
     expect(result.error).toContain("Network failure")
   })
+
+  it("returns Unknown Telegram error when API returns ok: false with no description", async () => {
+    const fetchMock = mock(() =>
+      Promise.resolve(
+        new Response(JSON.stringify({ ok: false }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        }),
+      ),
+    )
+    const originalFetch = globalThis.fetch
+    globalThis.fetch = fetchMock as typeof fetch
+
+    const result = await sendMessage("token", "123", "Hi")
+
+    globalThis.fetch = originalFetch
+
+    expect(result.success).toBe(false)
+    expect(result.error).toBe("Unknown Telegram error")
+  })
 })
 
 describe("sendMessageWithRetry", () => {

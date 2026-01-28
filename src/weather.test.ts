@@ -99,6 +99,19 @@ describe("fetchWeather", () => {
     expect(result.success).toBe(false)
     expect(result.error).toContain("Network error")
   })
+
+  it("returns Unknown error when fetch throws non-Error", async () => {
+    const fetchMock = mock(() => Promise.reject("string error"))
+    const originalFetch = globalThis.fetch
+    globalThis.fetch = fetchMock as typeof fetch
+
+    const result = await fetchWeather(0, 0)
+
+    globalThis.fetch = originalFetch
+
+    expect(result.success).toBe(false)
+    expect(result.error).toContain("Unknown error")
+  })
 })
 
 describe("fetchWeatherWithRetry", () => {
